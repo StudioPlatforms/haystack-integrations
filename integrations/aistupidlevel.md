@@ -24,7 +24,7 @@ toc: true
 
 ## Overview
 
-[AI Stupid Level](https://aistupidlevel.info) benchmarks models from OpenAI, Anthropic, Google, DeepSeek, Moonshot (Kimi) and Z.ai (GLM) on coding, reasoning and tool use. Its Smart Router is an OpenAI-compatible endpoint, `https://aistupidlevel.info/v1`, that uses the measured scores to choose the model for each request.
+[AI Stupid Level](https://aistupidlevel.info) benchmarks models from OpenAI, Anthropic, Google, DeepSeek, Moonshot (Kimi) and Z.ai (GLM) on coding, reasoning and tool use. Its Smart Router is an OpenAI-compatible endpoint, `https://aistupidlevel.info/v1`, that uses the benchmark scores to choose the model for each request.
 
 - **Your own provider keys.** You add your provider keys to your AI Stupid Level account. The router calls the chosen model with your key, so the provider bills you directly and AI Stupid Level adds zero token markup.
 - **Routing from benchmark scores.** Instead of a model name, you pass a routing mode such as `auto-coding` or `auto-tooling`. You can still pin a specific model when you want one.
@@ -69,8 +69,8 @@ Pass one of these as `model`:
 
 | Mode | What it picks |
 | --- | --- |
-| `auto-coding`, `auto-reasoning`, `auto-tooling`, `auto-best` | The best measured score on the coding, reasoning, tool-use or combined benchmarks |
-| `auto-value`, `auto-value-coding`, `auto-value-reasoning`, `auto-value-tooling` | The most benchmark points per measured dollar, among models within 5 points of the best |
+| `auto-coding`, `auto-reasoning`, `auto-tooling`, `auto-best` | The best score on the coding, reasoning, tool-use or combined benchmarks |
+| `auto-value`, `auto-value-coding`, `auto-value-reasoning`, `auto-value-tooling` | The most benchmark points per dollar, among models within 5 points of the best |
 | `auto-fastest-quality` | The fastest model within 5 points of the best |
 | `auto-cheapest`, `auto-fastest`, `auto-consistent` | The cheapest, fastest or steadiest model |
 | `auto-task` | A strategy chosen from the request's content |
@@ -81,7 +81,7 @@ When the leading models are statistically tied, the router picks the cheapest on
 
 ### Use with a Haystack Agent
 
-For an agent that calls tools, `auto-tooling` picks the model with the best measured tool-use score:
+For an agent that calls tools, `auto-tooling` picks the model with the best tool-use score:
 
 ```python
 from haystack.components.agents import Agent
